@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>Get  the  Weather!</h1>
+  <p class='entrar'>Enter the name of your city below to get the weather!</p>
+  <div class="searchField">
+  <input type="text" id="cityText"  placeholder="Enter city here">
+  <button id='citySearch'>Submit</button>
+  <p id="cityInfo">infos</p>
+</div>
+</body>
+<script>
+  fetch('http://api.openweathermap.org/data/2.5/forecast?q=sosua&APPID=2e5c1293bddeb11f77374b91a2592795&units=imperial')
+    .then(function (response) {
+
+      return response.json();
+      console.log(response.json())
+
+    })
+    .then(function (data) {
+
+
+
+      let obj = data.list[0].main.temp
+
+      console.log(obj);
+
+
+
+
+
+      document.getElementById('cityInfo').innerHTML = obj+'&#176';
+    })
+    .catch(e => {
+      alert("no gif with specified word available")
+    })
+
+  function submitCity() {
+
+    document.getElementById("citySearch").addEventListener("click", function () {
+
+          const header = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+          const api_plus_units = '&APPID=2e5c1293bddeb11f77374b91a2592795&units=imperial';
+          const key = header +  cityText.value + api_plus_units;
+          
+          fetch(key)
+            .then(function (response) {
+
+              return response.json();
+              console.log(response.json())
+
+            })
+            .then(function (data) {
+
+              let obj = data.list[0].main.temp
+              console.log(obj);
+
+    if( obj >= 75 ){
+      document.body.style.backgroundColor = "red";
+    }
+    if( obj >= 50 && obj < 75 ) {
+      document.body.style.backgroundColor = "orange";
+    }
+    if( obj <= 49 && obj > 25 ) {
+      document.body.style.backgroundColor = "blue";
+    }
+    if( obj <= 24) {
+      document.body.style.backgroundColor = "lightBlue";
+    }
+
+              document.getElementById('cityInfo').innerHTML = obj;
+            })
+            .catch(e => {
+      alert("please enter a valid city")
+    })
+  })
+  }
+  submitCity();
+
+  let weatherColor = () =>{
+
+    let temp = document.getElementById("cityInfo").innerHTML;
+     console.log(temp);
+    if( temp >= 75 ){
+      document.body.style.backgroundColor = "red";
+    }
+  }
+  weatherColor();
+</script>
+
+</html>

@@ -1,0 +1,28 @@
+
+
+body{
+    background-color: #F5EFED;
+}
+
+h1{
+    font-family:'Monoton', cursive;
+    font-size: 38px;
+    text-align: center;
+    color:  #2292A4;
+}
+
+p.entrar{
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    text-align: center;
+   color: #0F0A0A;
+}
+
+.searchField{
+    text-align: center;
+}
+
+#cityInfo{
+    font-family: 'Raleway', sans-serif;
+    font-size: 34px;
+}
