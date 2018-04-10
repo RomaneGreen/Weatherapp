@@ -1,2 +1,2 @@
 # Weatherapp
-weather project
+weather project using fetch api
